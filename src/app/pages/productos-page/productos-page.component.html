@@ -1,0 +1,27 @@
+<app-spinner *ngIf="loading"></app-spinner>
+<ng-container *ngIf="!loading">
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Id</th>
+                <th scope="col">Producto</th>
+                <th scope="col">Unidades</th>
+                <th scope="col">FechaCompra</th>
+                <th scope="col">IsTop10</th>
+                <th scope="col">...</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr [ngClass]="producto.isTop10 ? 'table-success' : 'table-danger'" *ngFor="let producto of productos">
+                <th scope="row">{{producto.id}}</th>
+                <td>{{producto.producto}}</td>
+                <td>{{producto.stock}}</td>
+                <td>{{producto.fechaCompra | date}}</td>
+                <td>{{producto.isTop10}}</td>
+                <td>
+                    <button (click)="producto.alternarTop10()" class="btn btn-primary">X</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</ng-container>
